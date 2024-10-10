@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "634400205523",
+    "project_id": "giuaki-21it164",
+    "storage_bucket": "giuaki-21it164.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:634400205523:android:2f6eba55ccdd32ce05c226",
+        "android_client_info": {
+          "package_name": "com.example.flutter_firebas"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBTJpERmHwZoONHzpfg1CQp0TkNLQ-VZHw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
