@@ -15,6 +15,7 @@ class _HomeState extends State<Home> {
   TextEditingController tencontroller = TextEditingController();
   TextEditingController loaicontroller = TextEditingController();
   TextEditingController giacontroller = TextEditingController();
+  TextEditingController imagecontroller = TextEditingController();
   Stream? ProductStream;
 
   getontheload() async {
@@ -51,6 +52,25 @@ class _HomeState extends State<Home> {
                           child: Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
+                              ds["imageUrl"] != null &&
+                                      ds["imageUrl"].isNotEmpty
+                                  ? Image.network(
+                                      ds["imageUrl"],
+                                      width: double.infinity,
+                                      height: 200,
+                                      fit: BoxFit.cover,
+                                    )
+                                  : const SizedBox(
+                                      height: 200,
+                                      child: Center(
+                                        child: Text(
+                                          "No Image Available",
+                                          style: TextStyle(
+                                              color: Colors.grey, fontSize: 16),
+                                        ),
+                                      ),
+                                    ),
+                              const SizedBox(height: 10),
                               Row(
                                 children: [
                                   Text("Tên sp: " + ds["Ten"],
@@ -64,6 +84,7 @@ class _HomeState extends State<Home> {
                                         tencontroller.text = ds["Ten"];
                                         loaicontroller.text = ds["Loai"];
                                         giacontroller.text = ds["Gia"];
+                                        imagecontroller.text = ds["imageUrl"];
                                         EditProductDetail(ds["Id"]);
                                       },
                                       child: const Icon(
@@ -259,6 +280,28 @@ class _HomeState extends State<Home> {
                   const SizedBox(
                     height: 30.0,
                   ),
+                  const Text("Hình ảnh",
+                      style: TextStyle(
+                          color: Colors.black,
+                          fontSize: 20.0,
+                          fontWeight: FontWeight.bold)),
+                  const SizedBox(
+                    height: 10.0,
+                  ),
+                  Container(
+                    padding: const EdgeInsets.only(left: 10.0),
+                    decoration: BoxDecoration(
+                        border: Border.all(),
+                        borderRadius: BorderRadius.circular(10.0)),
+                    child: TextField(
+                      controller: imagecontroller,
+                      decoration:
+                          const InputDecoration(border: InputBorder.none),
+                    ),
+                  ),
+                  const SizedBox(
+                    height: 30.0,
+                  ),
                   ElevatedButton(
                       onPressed: () async {
                         Map<String, dynamic> updateInfo = {
@@ -266,6 +309,7 @@ class _HomeState extends State<Home> {
                           "Loai": loaicontroller.text,
                           "Id": id,
                           "Gia": giacontroller.text,
+                          "imageUrl": imagecontroller.text,
                         };
                         await DatabaseMethods()
                             .updateProductDetail(id, updateInfo)
