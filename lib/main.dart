@@ -1,19 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
+import 'firebase_options.dart';
 import 'package:flutter_firebase_giuaki/pages/home.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp(
-    options: const FirebaseOptions(
-        apiKey: "AIzaSyCReNbgIBMPpEnVqLlApBK_m98dx3e_5-A",
-        authDomain: "giuaki-21it164.firebaseapp.com",
-        projectId: "giuaki-21it164",
-        storageBucket: "giuaki-21it164.appspot.com",
-        messagingSenderId: "634400205523",
-        appId: "1:634400205523:web:61253c1b39b77fb805c226",
-        measurementId: "G-EFMGJ7G4Q2"),
-        );
+  options: DefaultFirebaseOptions.currentPlatform,
+);
   runApp(const MyApp());
 }
 
